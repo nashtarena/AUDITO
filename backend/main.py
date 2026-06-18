@@ -6,7 +6,7 @@ from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 
 from database.session import Base, engine
-from api.routes import auth, projects, datasets, audits, notifications
+from api.routes import auth, projects, datasets, audits, notifications, analytics
 import models  # noqa: F401 — ensures all models are registered
 
 # Create tables
@@ -44,6 +44,7 @@ app.include_router(projects.router, prefix="/api")
 app.include_router(datasets.router, prefix="/api")
 app.include_router(audits.router, prefix="/api")
 app.include_router(notifications.router, prefix="/api")
+app.include_router(analytics.router, prefix="/api")
 
 
 @app.get("/health")
