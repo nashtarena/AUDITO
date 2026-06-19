@@ -120,7 +120,7 @@ export default function ProjectDetailPage() {
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input type="file" accept=".csv,.json,.txt" className="hidden"
                     onChange={e => e.target.files?.[0] && upload(type, e.target.files[0])} />
-                  <Button variant="secondary" size="sm" as="span">
+                  <Button variant="secondary" size="sm">
                     <Upload size={14} /> {uploading ? 'Uploading...' : 'Upload file'}
                   </Button>
                 </label>
