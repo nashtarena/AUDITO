@@ -25,6 +25,9 @@ class Settings(BaseSettings):
     # FAISS index storage
     FAISS_INDEX_DIR: str = "faiss_indexes"
 
+    # FRONTEND url
+    FRONTEND_URL: str = "http://localhost:3000"
+
     class Config:
         env_file = ".env"
 
