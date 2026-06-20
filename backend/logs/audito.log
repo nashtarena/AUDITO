@@ -22,3 +22,5 @@
 2026-06-19 21:36:38.333 | INFO     | services.audit_orchestrator:_progress:27 - Audit progress 93% - Computing risk score
 2026-06-19 21:36:39.351 | INFO     | services.audit_orchestrator:_progress:27 - Audit progress 100% - Audit complete
 2026-06-19 21:36:42.996 | INFO     | workers.tasks:run_audit_task:99 - Audit f119b347-5355-4305-b3ee-161b1160eba1 completed. Risk: Medium (49.8)
+2026-06-20 09:04:53.860 | INFO     | workers.tasks:run_audit_task:46 - Audit d46ad873-969c-4129-bbe1-3a165664da57: 10000 ref, 10000 gen texts
+2026-06-20 09:04:53.895 | INFO     | services.audit_orchestrator:_progress:27 - Audit progress 10% - Running exact match detection
