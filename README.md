@@ -16,7 +16,7 @@ Audito lets you audit AI model outputs for privacy risks. Upload a reference dat
 ## Architecture
 
 <!-- Add architecture diagram here -->
-> 🗺️ ![Architecture Diagram](<img width="1536" height="1024" alt="ChatGPT Image Jun 20, 2026, 09_45_35 AM" src="https://github.com/user-attachments/assets/0da81b83-ae78-4b46-8d5e-348d5b2e5362" />
+> 🗺️ (<img width="1536" height="1024" alt="ChatGPT Image Jun 20, 2026, 09_45_35 AM" src="https://github.com/user-attachments/assets/0da81b83-ae78-4b46-8d5e-348d5b2e5362" />
 )
 
 **High-level flow:**
