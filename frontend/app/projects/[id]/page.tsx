@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { ProgressBar } from '@/components/ui/ProgressBar'
-import { projectsApi, datasetsApi, auditsApi, reportsApi } from '@/lib/api'
+import { projectsApi, datasetsApi, auditsApi, reportsApi, reportsApiExtended } from '@/lib/api'
 import { formatDate, getRiskColor } from '@/lib/utils'
 import type { Project, Dataset, Audit } from '@/types'
 import { Upload, Play, FileDown, ArrowLeft, RefreshCw } from 'lucide-react'
@@ -71,7 +71,12 @@ export default function ProjectDetailPage() {
   const downloadReport = async (auditId: string) => {
     try {
       await reportsApi.generate(auditId)
-      window.open(reportsApi.downloadUrl(auditId), '_blank')
+      const r = await reportsApiExtended.download(auditId)
+      const url = URL.createObjectURL(r.data)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `audit_report_${auditId.slice(0, 8)}.pdf`
+      a.click()
     } catch { setMsg('Report generation failed') }
   }
 
@@ -108,22 +113,22 @@ export default function ProjectDetailPage() {
               <p className="text-xs text-slate-500 mb-3">
                 {type === 'reference' ? 'Potential training data (CSV/JSON/TXT)' : 'Model outputs to audit (CSV/JSON/TXT)'}
               </p>
-              {existing ? (
-                <div className="bg-surface-2 rounded-lg px-3 py-2 flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-slate-200">{existing.name}</p>
-                    <p className="text-xs text-slate-500">{existing.record_count} records</p>
-                  </div>
-                  <Badge label={existing.file_type.toUpperCase()} />
-                </div>
-              ) : (
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input type="file" accept=".csv,.json,.txt" className="hidden"
-                    onChange={e => e.target.files?.[0] && upload(type, e.target.files[0])} />
-                  <Button variant="secondary" size="sm">
+              {!existing && (
+                <div
+                  className="flex items-center gap-2 cursor-pointer"
+                  onClick={() => document.getElementById(`file-${type}`)?.click()}
+                >
+                  <input
+                    id={`file-${type}`}
+                    type="file"
+                    accept=".csv,.json,.txt"
+                    className="hidden"
+                    onChange={e => e.target.files?.[0] && upload(type, e.target.files[0])}
+                />
+                  <Button variant="secondary" size="sm" type="button">
                     <Upload size={14} /> {uploading ? 'Uploading...' : 'Upload file'}
                   </Button>
-                </label>
+                </div>
               )}
             </Card>
           )

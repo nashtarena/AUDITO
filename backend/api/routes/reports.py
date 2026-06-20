@@ -53,10 +53,16 @@ def generate_report(
     })
 
     # Save report record
-    if not audit.report:
-        report = Report(audit_id=audit_id, file_path=pdf_path)
+    if audit.report:
+        audit.report.file_path = pdf_path
+    else:
+        report = Report(
+            audit_id=audit_id,
+            file_path=pdf_path,
+        )
         db.add(report)
-        db.commit()
+
+    db.commit()
 
     return {"message": "Report generated", "download_url": f"/api/reports/{audit_id}/download"}
 
@@ -77,5 +83,6 @@ def download_report(
     return FileResponse(
         report.file_path,
         media_type="application/pdf",
-        filename=os.path.basename(report.file_path),
+        #filename=os.path.basename(report.file_path),
+        filename="test.pdf"
     )

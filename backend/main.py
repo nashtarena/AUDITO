@@ -6,7 +6,7 @@ from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 
 from database.session import Base, engine
-from api.routes import auth, projects, datasets, audits, notifications, analytics
+from api.routes import auth, projects, datasets, audits, notifications, analytics, reports
 import models  # noqa: F401 — ensures all models are registered
 
 from dotenv import load_dotenv
@@ -49,6 +49,7 @@ app.include_router(datasets.router, prefix="/api")
 app.include_router(audits.router, prefix="/api")
 app.include_router(notifications.router, prefix="/api")
 app.include_router(analytics.router, prefix="/api")
+app.include_router(reports.router, prefix="/api")
 
 @app.get("/") 
 def root():
