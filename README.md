@@ -1,6 +1,4 @@
-# Audito
-
-**LLM Data Memorization & Privacy Leakage Auditing Platform**
+**Audito - LLM Pre-Deployment Privacy Audit Framework**
 
 Audito lets you audit AI model outputs for privacy risks. Upload a reference dataset (potential training data) and a generated dataset (model outputs), and Audito runs a 6-engine analysis pipeline to detect memorization, PII leakage, and training data exposure — returning a single risk score with a full breakdown and downloadable PDF report.
 
